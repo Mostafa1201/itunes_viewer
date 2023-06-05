@@ -1,4 +1,4 @@
-import { APIGatewayProxyEventV2, APIGatewayProxyHandlerV2 } from "aws-lambda";
+import { APIGatewayProxyHandlerV2 } from "aws-lambda";
 import axios from "axios";
 import ItuneResponseObject from "@itunes-search-backend/core/types/ItuneResponseObject";
 import badRequestResponse from "@itunes-search-backend/core/responses/badRequestResponse";
