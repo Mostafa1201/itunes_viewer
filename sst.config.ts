@@ -1,5 +1,5 @@
 import { SSTConfig } from "sst";
-import { ExampleStack } from "./stacks/ExampleStack";
+import { ApiStack } from "./stacks/ApiStack";
 import { Constants } from "@itunes-search-backend/core/src/utilities/constants";
 
 export default {
@@ -10,6 +10,6 @@ export default {
     };
   },
   stacks(app) {
-    app.stack(ExampleStack);
+    app.stack(ApiStack);
   }
 } satisfies SSTConfig;
