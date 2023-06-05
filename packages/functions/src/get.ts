@@ -1,4 +1,4 @@
-import notes from "@itunes-search-backend/core/notes";
+import notes from "@itunes-search/core/notes";
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
 
 export const handler: APIGatewayProxyHandlerV2 = async (event) => {

@@ -1,11 +1,11 @@
 import { APIGatewayProxyHandlerV2 } from "aws-lambda";
 import axios from "axios";
-import ItuneResponseObject from "@itunes-search-backend/core/types/ItuneResponseObject";
-import badRequestResponse from "@itunes-search-backend/core/responses/badRequestResponse";
-import notFoundResponse from "@itunes-search-backend/core/responses/notFoundResponse";
-import sucessResponse from "@itunes-search-backend/core/responses/sucessResponse";
-import Database from "@itunes-search-backend/core/utilities/database";
-import { Constants } from "@itunes-search-backend/core/src/utilities/constants";
+import ItuneResponseObject from "@itunes-search/core/types/ItuneResponseObject";
+import badRequestResponse from "@itunes-search/core/responses/badRequestResponse";
+import notFoundResponse from "@itunes-search/core/responses/notFoundResponse";
+import sucessResponse from "@itunes-search/core/responses/sucessResponse";
+import Database from "@itunes-search/core/utilities/database";
+import { Constants } from "@itunes-search/core/src/utilities/constants";
 
 const mapResponseObject = (results: any) :ItuneResponseObject[] => {
   let mappedResults = [];
@@ -46,7 +46,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
       return notFoundResponse("Not Found");
     }
     const results = mapResponseObject(response.data.results);
-    await Database.create(Constants.TracksTableName, results);
+    await Database.create('taher-itunes-search-Tracks', results);
     return sucessResponse(results);
   } catch (error: any) {
     console.error(error);
