@@ -1,9 +1,10 @@
 import { StackContext, Table } from "sst/constructs";
-import { Constants } from "@itunes-search-backend/core/src/utilities/constants";
+import { Constants } from "@itunes-search/core/src/utilities/constants";
 
 export function StorageStack({ stack }: StackContext) {
   const tracksTable = new Table(stack, Constants.TracksTableName, {
     fields: {
+      id: "string",
       kind: "string",
       trackId: "number",
       trackName: "string",

@@ -1,4 +1,4 @@
-import notes from "@itunes-search-backend/core/notes";
+import notes from "@itunes-search/core/notes";
 
 export async function handler() {
   return {
