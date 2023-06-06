@@ -21,11 +21,6 @@ export function StorageStack({ stack }: StackContext) {
       shortDescription: "string",
       longDescription: "string"
     },
-    cdk: {
-      table: {
-        tableName: Constants.TracksTableName
-      }
-    },
     primaryIndex: { partitionKey: "id" },
   });
 
