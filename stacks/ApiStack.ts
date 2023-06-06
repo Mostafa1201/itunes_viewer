@@ -1,8 +1,15 @@
-import { Api, StackContext } from "sst/constructs";
+import { Api, StackContext, use } from "sst/constructs";
+import { StorageStack } from "./StorageStack";
 
 export function ApiStack({ stack }: StackContext) {
+  const { tracksTable } = use(StorageStack);
   // Create the HTTP API
   const api = new Api(stack, "Api", {
+    defaults: {
+      function: {
+        bind: [tracksTable],
+      },
+    },
     routes: {
       "GET /search": "packages/functions/src/search.handler",
       "GET /notes": "packages/functions/src/list.handler",
@@ -15,4 +22,7 @@ export function ApiStack({ stack }: StackContext) {
   stack.addOutputs({
     ApiEndpoint: api.url,
   });
+  return {
+    api
+  };
 }

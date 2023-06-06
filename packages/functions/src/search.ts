@@ -5,7 +5,7 @@ import badRequestResponse from "@itunes-search/core/responses/badRequestResponse
 import notFoundResponse from "@itunes-search/core/responses/notFoundResponse";
 import sucessResponse from "@itunes-search/core/responses/sucessResponse";
 import Database from "@itunes-search/core/utilities/database";
-import { Constants } from "@itunes-search/core/src/utilities/constants";
+import { Constants } from "@itunes-search/core/utilities/constants";
 
 const mapResponseObject = (results: any) :ItuneResponseObject[] => {
   let mappedResults = [];
@@ -39,14 +39,13 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
     return badRequestResponse("Seach query is empty");
   }
   try {
-    const response = await axios.get(
-      `${Constants.ItunesURI}/search?term=${searchQuery.term}`
-    );
+    const url = `${Constants.ItunesURI}/search?term=${searchQuery.term}`;
+    const response = await axios.get(url);
     if (!response.data || !response.data.results) {
       return notFoundResponse("Not Found");
     }
     const results = mapResponseObject(response.data.results);
-    await Database.create('taher-itunes-search-Tracks', results);
+    await Database.create(Constants.TracksTableName, results);
     return sucessResponse(results);
   } catch (error: any) {
     console.error(error);
