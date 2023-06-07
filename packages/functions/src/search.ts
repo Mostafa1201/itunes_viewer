@@ -45,7 +45,7 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
       return notFoundResponse("Not Found");
     }
     const results = mapResponseObject(response.data.results);
-    await Database.create(Constants.TracksTableName, results);
+    await Database.create(Constants.TracksTableFullName, results);
     return sucessResponse(results);
   } catch (error: any) {
     console.error(error);
