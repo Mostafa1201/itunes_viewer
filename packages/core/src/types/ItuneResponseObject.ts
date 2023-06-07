@@ -14,8 +14,6 @@ type ItuneResponseObject = {
     country: string;
     currency: string;
     primaryGenreName: string;
-    shortDescription: string;
-    longDescription: string;
 }
 
 export default ItuneResponseObject;

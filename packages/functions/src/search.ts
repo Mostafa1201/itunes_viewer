@@ -12,7 +12,7 @@ const mapResponseObject = (results: any) :ItuneResponseObject[] => {
   for(let result of results){
     mappedResults.push({
       kind: result.kind,
-      artistName: result.kind,
+      artistName: result.artistName,
       collectionName: result.collectionName,
       trackId: result.trackId,
       trackName: result.trackName,
@@ -26,8 +26,6 @@ const mapResponseObject = (results: any) :ItuneResponseObject[] => {
       country: result.country,
       currency: result.currency,
       primaryGenreName: result.primaryGenreName,
-      shortDescription: result.shortDescription,
-      longDescription: result.longDescription,
     })
   }
   return mappedResults;
@@ -45,8 +43,8 @@ export const handler: APIGatewayProxyHandlerV2 = async (event) => {
       return notFoundResponse("Not Found");
     }
     const results = mapResponseObject(response.data.results);
-    await Database.create(Constants.TracksTableFullName, results);
-    return sucessResponse(results);
+    const tracks = await Database.create(Constants.TracksTableFullName, results);
+    return sucessResponse(tracks);
   } catch (error: any) {
     console.error(error);
     return badRequestResponse(error.message);
