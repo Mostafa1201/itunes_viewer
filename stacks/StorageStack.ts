@@ -18,8 +18,6 @@ export function StorageStack({ stack }: StackContext) {
       country: "string",
       currency: "string",
       primaryGenreName: "string",
-      shortDescription: "string",
-      longDescription: "string"
     },
     primaryIndex: { partitionKey: "id" },
   });

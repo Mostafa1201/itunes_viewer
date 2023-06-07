@@ -6,7 +6,7 @@ export function ApiStack({ stack }: StackContext) {
   const api = new Api(stack, "Api", {
     routes: {
       "GET /search": "packages/functions/src/search.handler",
-      "GET /notes": "packages/functions/src/list.handler",
+      "GET /list": "packages/functions/src/list.handler",
       "GET /notes/{id}": "packages/functions/src/get.handler",
       "PUT /notes/{id}": "packages/functions/src/update.handler",
     },

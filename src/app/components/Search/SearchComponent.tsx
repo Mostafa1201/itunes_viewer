@@ -5,7 +5,7 @@ import { Button, FormControl, Paper, TextField, Typography } from "@mui/material
 import axios from "axios";
 import { useState } from "react";
 
-const SearchComponent = () => {
+const SearchComponent = ({setTracks}:any) => {
   const router = useRouter();
   const client = axios.create({
     baseURL: Constants.API_URL,
@@ -19,7 +19,7 @@ const SearchComponent = () => {
     event.preventDefault();
     let response :any = await client.get(`${Constants.API_URL}/search?term=${searchTerm}`);
     if(response.status === 200){
-      router.push('/list')
+      setTracks(response.data);
     }
   }
 
@@ -30,7 +30,7 @@ const SearchComponent = () => {
           Search Itunes Tracks
         </Typography>
 
-        <FormControl sx={{ width: '50ch',height: '10ch' }}>
+        <FormControl sx={{ width: '50vw',height: '10vh' }}>
           <TextField
               label="Search"
               id="margin-normal"
@@ -41,7 +41,7 @@ const SearchComponent = () => {
               onChange={handleInput}
             />
         </FormControl>
-        <FormControl sx={{ width: '50ch',height: '10ch' }}>
+        <FormControl className='seach-button-wrapper' sx={{ width: '50vw',height: '6vh' }}>
           <Button
             type="submit"
             variant="contained"
