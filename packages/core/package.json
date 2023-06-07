@@ -1,5 +1,5 @@
 {
-  "name": "@itunes-search-backend/core",
+  "name": "@itunes-search/core",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
