@@ -5,34 +5,6 @@ import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { millisToMinutesAndSeconds } from "../../../utlities/time";
 import ItuneTrackModel from "../../../../packages/core/src/types/ItuneTrackModel"
-interface TrackData {
-  index: number;
-  id: string;
-  kind: string;
-  artistName: string;
-  collectionName: string;
-  trackId: number;
-  trackName: string;
-  trackViewUrl: string;
-  trackCount: number;
-  trackPrice: number;
-  trackTimeMillis: number;
-  previewUrl: string;
-  collectionPrice: number;
-  releaseDate: string;
-  country: string;
-  currency: string;
-  primaryGenreName: string;
-}
-
-interface DataGridRowParams {
-  columns: GridColDef;
-  id: number;
-  row: {
-    index: number;
-    id: string;
-  };
-}
 
 const renderLink = (params: GridRenderCellParams) => {
   return (
