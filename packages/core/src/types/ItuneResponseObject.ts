@@ -7,7 +7,7 @@ type ItuneResponseObject = {
     trackViewUrl: string;
     trackCount: number; // The number of tracks in the album.
     trackPrice: number;
-    trackTimeMillis: number;
+    trackTimeMillis: number | string;
     previewUrl: string;
     collectionPrice: number;
     releaseDate: string;

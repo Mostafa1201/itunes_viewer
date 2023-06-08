@@ -1,11 +1,10 @@
 "use client";
 
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import { millisToMinutesAndSeconds } from "../../../utlities/time";
-
-// TODO replace 'any' types with the needed types
+import ItuneTrackModel from "../../../../packages/core/src/types/ItuneTrackModel"
 interface TrackData {
   index: number;
   id: string;
@@ -35,7 +34,7 @@ interface DataGridRowParams {
   };
 }
 
-const renderLink = (params: any) => {
+const renderLink = (params: GridRenderCellParams) => {
   return (
     <a style={{ color: "blue" }} href={params.value}>
       {params.value}
@@ -43,10 +42,10 @@ const renderLink = (params: any) => {
   );
 };
 
-const ListComponent = (props: any) => {
-  const [rows, setRows] = useState([]);
+const ListComponent = ({tracks}: {tracks: ItuneTrackModel[]}) => {
+  const [rows, setRows] = useState<ItuneTrackModel[]>([]);
 
-  const columns: any[] = [
+  const columns: GridColDef[] = [
     { field: "index", headerName: "#", width: 50 },
     { field: "kind", headerName: "Kind", width: 80 },
     { field: "artistName", headerName: "Artist Name", width: 150 },
@@ -77,7 +76,7 @@ const ListComponent = (props: any) => {
 
   useEffect(() => {
     const setData = async () => {
-      const tableRows: any = props.tracks.map((track: any, index: number) => ({
+      const tableRows: ItuneTrackModel[] = tracks.map((track: ItuneTrackModel, index: number) => ({
         index: index + 1,
         id: track.id,
         kind: track.kind,
@@ -88,7 +87,7 @@ const ListComponent = (props: any) => {
         trackViewUrl: track.trackViewUrl,
         trackCount: track.trackCount,
         trackPrice: track.trackPrice,
-        trackTimeMillis: millisToMinutesAndSeconds(track.trackTimeMillis),
+        trackTimeMillis: millisToMinutesAndSeconds(Number(track.trackTimeMillis)),
         previewUrl: track.previewUrl,
         collectionPrice: track.collectionPrice,
         releaseDate: track.releaseDate,
@@ -98,10 +97,10 @@ const ListComponent = (props: any) => {
       }));
       setRows(tableRows);
     };
-    if (props.tracks) {
+    if(tracks){
       setData();
     }
-  }, [props.tracks]);
+  }, [tracks]);
 
   return (
     <div className="listComponent">

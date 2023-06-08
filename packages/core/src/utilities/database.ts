@@ -5,12 +5,18 @@ import ItuneTrackModel from "../types/ItuneTrackModel";
 
 const dynamoDb = new DynamoDB.DocumentClient();
 
+type DynamodbTrackItems = {
+  PutRequest : {
+    Item: ItuneTrackModel
+  }
+}
+
 class Database {
   static async create(
     tableName: string,
     results: ItuneResponseObject[]
   ): Promise<ItuneTrackModel[]> {
-    let items: any[] = [];
+    let items: DynamodbTrackItems[] = [];
     let tracks: ItuneTrackModel[] = [];
     let size = results.length;
     let params;

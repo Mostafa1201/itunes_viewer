@@ -4,20 +4,33 @@ import { Constants } from "@/utlities/constants";
 import { Button, FormControl, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import ItuneTrackModel from "../../../../packages/core/src/types/ItuneTrackModel"
 
-const SearchComponent = ({setTracks}:any) => {
+type TrackResponseData = {
+  status: number;
+  data : ItuneTrackModel[];
+}
+
+type SetTrackType = {
+  setTracks: (tracks: ItuneTrackModel[]) => {}
+}
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
+
+const SearchComponent = ({setTracks}: SetTrackType) => {
   const router = useRouter();
   const client = axios.create({
     baseURL: Constants.API_URL,
   });
-  const [searchTerm, setSearchTerm] = useState([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const handleInput = (event :any) => {
+  const handleInput = (event :InputEvent) => {
     setSearchTerm(event.target.value);
   };
-  const handleSubmit = async (event :any) => {
+  const handleSubmit = async (event :ButtonEvent) => {
     event.preventDefault();
-    let response :any = await client.get(`${Constants.API_URL}/search?term=${searchTerm}`);
+    let response :TrackResponseData = await client.get(`${Constants.API_URL}/search?term=${searchTerm}`);
     if(response.status === 200){
       setTracks(response.data);
     }
