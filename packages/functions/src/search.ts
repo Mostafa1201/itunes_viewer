@@ -7,7 +7,7 @@ import sucessResponse from "@itunes-search/core/responses/sucessResponse";
 import Database from "@itunes-search/core/utilities/database";
 import { Constants } from "@itunes-search/core/utilities/constants";
 
-const mapResponseObject = (results: any) :ItuneResponseObject[] => {
+const mapResponseObject = (results: ItuneResponseObject[]) :ItuneResponseObject[] => {
   let mappedResults = [];
   for(let result of results){
     mappedResults.push({
