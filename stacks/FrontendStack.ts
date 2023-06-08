@@ -1,7 +1,7 @@
-import { StaticSite, use, StackContext, NextjsSite } from "sst/constructs";
+import { use, StackContext, NextjsSite } from "sst/constructs";
 import { ApiStack } from "./ApiStack";
 
-export function FrontendStack({ stack, app }: StackContext) {
+export function FrontendStack({ stack }: StackContext) {
   const { api } = use(ApiStack);
   // Define our Next app
   // we transmit the outputs from the ApiStack as environment variables in nextjs

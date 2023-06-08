@@ -1,5 +1,4 @@
 'use client';
-import { useRouter } from 'next/navigation';
 import { Constants } from "@/utlities/constants";
 import { Button, FormControl, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
@@ -19,7 +18,6 @@ type InputEvent = React.ChangeEvent<HTMLInputElement>;
 type ButtonEvent = React.MouseEvent<HTMLButtonElement>;
 
 const SearchComponent = ({setTracks}: SetTrackType) => {
-  const router = useRouter();
   const client = axios.create({
     baseURL: Constants.API_URL,
   });
